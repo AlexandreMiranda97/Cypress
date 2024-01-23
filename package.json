@@ -1,14 +1,25 @@
 {
   "name": "cypress",
   "version": "1.0.0",
-  "description": "Here I'll be putting my first Cypress codes and studying lessons that I've did",
+  "description": "Testing some sites with cypress and cucumber",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cypress open"
   },
-  "keywords": [],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexandreMiranda97/Cypress.git"
+  },
+  "keywords": [
+    "cypress",
+    "cucumber"
+  ],
+  "author": "Alexandre Miranda",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexandreMiranda97/Cypress/issues"
+  },
+  "homepage": "https://github.com/AlexandreMiranda97/Cypress#readme",
   "devDependencies": {
     "cypress": "^13.6.3"
   }
