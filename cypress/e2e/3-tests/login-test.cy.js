@@ -20,7 +20,7 @@ describe('Login test', () => {
         cy.visit('https://parabank.parasoft.com/parabank/index.htm/', {timeout: 30000})
     })
 
-    // npx cypress run --record --spec "cypress/e2e/3-tests/login-test.cy.js"
+    // npx cypress run --headless --spec "cypress/e2e/3-tests/login-test.cy.js"
     it('Acessar o site Parabank', () => {
         cy.visit('https://parabank.parasoft.com/parabank/index.htm', {timeout: 30000})
         cy.url().should('eq', 'https://parabank.parasoft.com/parabank/index.htm')
