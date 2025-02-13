@@ -9,31 +9,49 @@ const fakeZipCode = faker.location.zipCode();
 const fakeNumber = faker.phone.number({ style: 'national' });
 const fakeSSN = faker.string.numeric(9);
 const fakeUsername = faker.internet.username();
-const fakePassword = faker.internet.password();
+const fakePassword = faker.internet.password(12);
 
 describe('Login test', () => {
-    beforeEach(() => { 
+    beforeEach(() => {
+        failOnStatusCode: false,
+        cy.clearAllCookies
+        cy.clearAllSessionStorage
         cy.viewport(1024, 768)
-        cy.visit('https://parabank.parasoft.com/parabank/index.htm', {timeout: 30000})
-       
+        cy.visit('https://parabank.parasoft.com/parabank/index.htm/', {timeout: 30000})
     })
 
-    it('Realizar cadastro no site Parabank', () => {
-        cy.get('.logo')
+    // npx cypress run --record --spec "cypress/e2e/3-tests/login-test.cy.js"
+    it('Acessar o site Parabank', () => {
+        cy.visit('https://parabank.parasoft.com/parabank/index.htm', {timeout: 30000})
+        cy.url().should('eq', 'https://parabank.parasoft.com/parabank/index.htm')
+    });
+
+    it('Registrar novo usuario', () => {
         cy.get('a').contains('Register').click()
-        cy.get('.title').contains('Signing up is easy!')
-        cy.get('#customerForm').find('[name="customer.firstName"]').type(randomFName)
-        cy.get('#customerForm').find('[id="customer.lastName"]').type(randomLName)
-        cy.get('#customerForm').find('[id="customer.address.street"]').type(fakeAdress)
-        cy.get('#customerForm').find('[id="customer.address.city"]').type(fakeCity)
-        cy.get('#customerForm').find('[id="customer.address.state"]').type(fakeState)
-        cy.get('#customerForm').find('[id="customer.address.zipCode"]').type(fakeZipCode)
-        cy.get('#customerForm').find('[id="customer.phoneNumber"]').type(fakeNumber)
-        cy.get('#customerForm').find('[id="customer.ssn"]').type(fakeSSN)
-        cy.get('#customerForm').find('[id="customer.username"]').type(fakeUsername)
-        cy.get('#customerForm').find('[id="customer.password"]').type(fakePassword)
-        cy.get('#customerForm').find('[id="repeatedPassword"]').type(fakePassword)
+        cy.get('.title').invoke('val').should('have.text', 'Signing up is easy!')
+        cy.get('#customerForm[name="customer.firstName"]').type(randomFName)
+        cy.get('#customerForm').invoke('val').should('have.text', randomFName)
+        cy.get('#customerForm[id="customer.lastName"]').type(randomLName)
+        cy.get('#customerForm[id="customer.lastName"]').invoke('val').should('have.text', randomLName)
+        cy.get('#customerForm[id="customer.address.street"]').type(fakeAdress)
+        cy.get('#customerForm[id="customer.address.street"]').invoke('val').should('have.text', fakeAdress)
+        cy.get('#customerForm[id="customer.address.city"]').type(fakeCity)
+        cy.get('#customerForm[id="customer.address.city"]').invoke('val').should('have.text', fakeCity)
+        cy.get('#customerForm[id="customer.address.state"]').type(fakeState)
+        cy.get('#customerForm[id="customer.address.state"]').invoke('val').should('have.text', fakeState)
+        cy.get('#customerForm[id="customer.address.zipCode"]').type(fakeZipCode)
+        cy.get('#customerForm[id="customer.address.zipCode"]').invoke('val').should('have.text', fakeZipCode)
+        cy.get('#customerForm[id="customer.phoneNumber"]').type(fakeNumber)
+        cy.get('#customerForm[id="customer.phoneNumber"]').invoke('val').should('have.text', fakeNumber)
+        cy.get('#customerForm[id="customer.ssn"]').type(fakeSSN)
+        cy.get('#customerForm[id="customer.ssn"]').invoke('val').should('have.text', fakeSSN)
+        cy.get('#customerForm[id="customer.username"]').type(fakeUsername)
+        cy.get('#customerForm[id="customer.username"]').invoke('val').should('have.text', fakeUsername)
+        cy.get('#customerForm[id="customer.password"]').type(fakePassword)
+        cy.get('#customerForm[id="customer.password"]').invoke('val').should('have.length', 12)
+        cy.get('#customerForm[id="repeatedPassword"]').type(fakePassword)
+        cy.get('#customerForm[id="repeatedPassword"]').invoke('val').should('have.length', 12)
         cy.get('[colspan="2"] > .button').click()
-        cy.contains('Your account was created successfully. You are now logged in.')
-    })
+        cy.contains('Your account was created successfully. You are now logged in.').should('exist')
+    });
 })
