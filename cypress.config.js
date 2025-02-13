@@ -5,7 +5,7 @@ module.exports = defineConfig({
   e2e: {
     pageLoadTimeout: 30000,
     video: true,
-    defaultBrowser: chrome,
+    defaultBrowser: "chrome",
     chromeWebSecurity: false,
 
     setupNodeEvents(on, config) {
