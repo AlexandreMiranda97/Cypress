@@ -21,6 +21,6 @@
   },
   "homepage": "https://github.com/AlexandreMiranda97/Cypress#readme",
   "devDependencies": {
-    "cypress": "^13.6.3"
+    "cypress": "^13.17.0"
   }
 }
