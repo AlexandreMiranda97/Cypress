@@ -4,7 +4,8 @@
   "description": "Testing some sites with cypress and cucumber",
   "main": "index.js",
   "scripts": {
-    "test": "cypress open"
+    "test": "cypress open",
+    "cy:open": "cypress open"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
   },
   "homepage": "https://github.com/AlexandreMiranda97/Cypress#readme",
   "devDependencies": {
+    "@faker-js/faker": "^9.5.0",
     "cypress": "^13.17.0"
   }
 }
