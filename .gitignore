@@ -43,3 +43,8 @@ Thumbs.db
 *.jpg
 screenshots/
 videos/
+
+# Folders #
+###########
+1-getting-started/
+2-advanced-examples/
